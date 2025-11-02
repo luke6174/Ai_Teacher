@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini 英语口语助手</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>AI 英语口语助手</h1>
+        <p>实时语音口语练习，AI 纠错+评分+场景句式</p>
+      </header>
+
+      <section class="panel panel--controls">
+        <div class="control-group">
+          <button id="startPracticeBtn" class="btn">开始练习</button>
+          <button id="recordBtn" class="btn btn--primary" disabled>开始录音</button>
+          <button id="stopBtn" class="btn" disabled>结束发言</button>
+        </div>
+        <div class="control-group">
+          <label>
+            主题
+            <select id="themeSelect"></select>
+          </label>
+          <label>
+            场景
+            <select id="scenarioSelect"></select>
+          </label>
+          <button id="applyScenarioBtn" class="btn" disabled>发送偏好</button>
+        </div>
+        <div class="status" id="statusArea"></div>
+      </section>
+
+      <section class="panel panel--conversation">
+        <h2>对话记录</h2>
+        <div id="conversation" class="conversation"></div>
+      </section>
+
+      <section class="panel panel--score">
+        <div class="score-card">
+          <span class="score-card__label">发音评分</span>
+          <span id="scoreValue" class="score-card__value">--</span>
+        </div>
+        <audio id="ttsPlayer" controls class="tts-player" hidden></audio>
+      </section>
+    </main>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="message__meta">
+          <span class="message__role"></span>
+          <span class="message__time"></span>
+        </div>
+        <div class="message__content"></div>
+      </article>
+    </template>
+
+  <script type="module" src="practice.js"></script>
+  </body>
+</html>
