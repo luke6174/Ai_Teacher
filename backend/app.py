@@ -35,9 +35,8 @@ HOST = os.getenv("GEMINI_HOST", "generativelanguage.googleapis.com")
 MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.0-flash-exp")
 GEMINI_MODEL = MODEL_NAME if MODEL_NAME.startswith("models/") else f"models/{MODEL_NAME}"
 
-VOICE_API_KEY = os.environ.get("ELEVENLABS_API_KEY")
-VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "nPczCjzI2devNBz1zQrb")
-VOICE_MODEL = os.getenv("ELEVENLABS_VOICE_MODEL", "eleven_flash_v2_5")
+GEMINI_TTS_MODEL = os.getenv("GEMINI_TTS_MODEL", "gemini-2.5-flash-preview-tts")
+GEMINI_TTS_VOICE_NAME = os.getenv("GEMINI_TTS_VOICE_NAME", "Kore")
 
 THEMES: dict[str, list[str]] = {
     "business": ["job interview", "business meeting", "presentation", "networking"],
@@ -61,9 +60,9 @@ frontend_dir = Path(__file__).resolve().parents[1] / "frontend"
 @app.on_event("startup")
 async def _init_clients() -> None:
     app.state.tts_client = TTSClient(
-        api_key=VOICE_API_KEY,
-        voice_id=VOICE_ID,
-        model_id=VOICE_MODEL,
+        api_key=GOOGLE_API_KEY,
+        voice_name=GEMINI_TTS_VOICE_NAME,
+        model_id=GEMINI_TTS_MODEL,
     )
 
 
